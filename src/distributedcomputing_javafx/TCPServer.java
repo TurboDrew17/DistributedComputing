@@ -11,9 +11,10 @@ public class TCPServer {
     PrintWriter out = null; // for writing to ServerRouter
     BufferedReader in = null; // for reading form ServerRouter
   	InetAddress addr = InetAddress.getLocalHost();
-  	String host = addr.getHostAddress(); // Server machine's IP			
-  	String routerName = "j263-08.cse1.spsu.edu"; // ServerRouter host name
-  	int SockNum = 5555; // port number
+  	String host = addr.getHostAddress(); // Server machine's IP
+   	//String routerName = "j263-08.cse1.spsu.edu"; // ServerRouter host name
+        String routerName = "10.54.64.229";
+  	int SockNum = 5010; // port number
 	
 	  // Tries to connect to the ServerRouter
     try {
@@ -31,9 +32,10 @@ public class TCPServer {
     }
 		
   	// Variables for message passing			
-    String fromServer; // messages sent to ServerRouter
-    String fromClient; // messages received from ServerRouter      
-		String address ="10.5.3.196"; // destination IP (Client)
+        String fromServer; // messages sent to ServerRouter
+        String fromClient; // messages received from ServerRouter      
+        //String address ="10.5.3.196"; // destination IP (Client)
+        String address ="10.54.64.229"; // destination IP (Client)
 	
   	// Communication process (initial sends/receives)
   	out.println(address);// initial send (IP of the destination Client)
@@ -54,5 +56,6 @@ public class TCPServer {
     out.close();
     in.close();
     Socket.close();
+      System.out.println("Server closed sockets... ");
   }
 }

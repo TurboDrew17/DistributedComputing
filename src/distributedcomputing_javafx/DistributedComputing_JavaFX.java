@@ -23,8 +23,8 @@ public class DistributedComputing_JavaFX extends Application {
         root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         System.out.println("This is a test");
         
+        //Show the UI
         scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("Distributed Computing JavaFX");

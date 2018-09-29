@@ -9,7 +9,7 @@ public class SThread extends Thread
 {
 	private Object [][] RTable; // routing table
 	private PrintWriter out, outTo; // writers (for writing back to the machine and to destination)
-    private BufferedReader in; // reader (for reading from the machine connected to)
+        private BufferedReader in; // reader (for reading from the machine connected to)
 	private String inputLine, outputLine, destination, addr; // communication strings
 	private Socket outSocket; // socket for communicating with a destination
 	private int ind; // indext in the routing table
@@ -38,7 +38,7 @@ public class SThread extends Thread
 			
 			// waits 10 seconds to let the routing table fill with all machines' information
 			try{
-	    		Thread.currentThread().sleep(10000); 
+                            Thread.currentThread().sleep(3000); 
 		   	}
 			catch(InterruptedException ie){
 				System.out.println("Thread interrupted");

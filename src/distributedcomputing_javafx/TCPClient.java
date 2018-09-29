@@ -13,11 +13,13 @@ public class TCPClient {
       BufferedReader in = null; // for reading form ServerRouter
    	InetAddress addr = InetAddress.getLocalHost();
    	String host = addr.getHostAddress(); // Client machine's IP
-   	String routerName = "j263-08.cse1.spsu.edu"; // ServerRouter host name
-   	int SockNum = 5555; // port number
+   	//String routerName = "j263-08.cse1.spsu.edu"; // ServerRouter host name
+        String routerName = "10.54.64.229";
+   	int SockNum = 5010; // port number
    	
    	// Tries to connect to the ServerRouter
       try {
+          
          Socket = new Socket(routerName, SockNum);
          out = new PrintWriter(Socket.getOutputStream(), true);
          in = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
@@ -32,11 +34,12 @@ public class TCPClient {
       }
    			
    	// Variables for message passing	
-      Reader reader = new FileReader("file.txt"); 
+      Reader reader = new FileReader("C:/Users/asavas/Desktop/file.txt"); 
    	BufferedReader fromFile =  new BufferedReader(reader); // reader for the string file
       String fromServer; // messages received from ServerRouter
       String fromUser; // messages sent to ServerRouter
-   	String address ="10.5.2.109"; // destination IP (Server)
+   	//String address ="10.5.2.109"; // destination IP (Server)ServerRouter
+   	String address ="10.54.64.229"; // destination IP (Server)
    	long t0, t1, t;
    	
    	// Communication process (initial sends/receives
@@ -67,5 +70,7 @@ public class TCPClient {
       out.close();
       in.close();
       Socket.close();
+      
+      System.out.println("Sent file... ");
    }
 }
