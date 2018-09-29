@@ -7,19 +7,30 @@ public class TCPServerRouter {
   public static void main(String[] args) throws IOException {
     Socket clientSocket = null; // socket for the thread
     Object [][] RoutingTable = new Object [10][2]; // routing table
-	  int SockNum = 5555; // port number
+	  int SockNum = 5010; // port number
 		Boolean Running = true;
 		int ind = 0; // indext in the routing table	
 
 	  //Accepting connections
     ServerSocket serverSocket = null; // server socket for accepting connections
     try {
-      serverSocket = new ServerSocket(5555);
-      System.out.println("ServerRouter is Listening on port: 5555.");
+      serverSocket = new ServerSocket(SockNum);
+      System.out.println("ServerRouter is Listening on port: " + SockNum + ".");
     }
     catch (IOException e) {
-      System.err.println("Could not listen on port: 5555.");
+      System.err.println("Could not listen on port: " + SockNum + ".");
       System.exit(1);
+    }
+    
+    try {
+        //192.168.56.1:3000
+        RoutingTable[0][0] = "10.54.64.229";
+        RoutingTable[0][1] = new Socket("10.54.64.229", 5010);  //server
+        RoutingTable[1][0] = "192.168.56.1";
+        RoutingTable[1][1] = new Socket("192.168.56.1", 5010);  //server
+    }
+    catch (Exception e){
+        System.out.println("Failed to get the routing table");
     }
 	
 		// Creating threads with accepted connections
@@ -41,5 +52,6 @@ public class TCPServerRouter {
 	  //closing connections
     clientSocket.close();
     serverSocket.close();
+      System.out.println("ServerRouter closed sockets... ");
   }
 }
