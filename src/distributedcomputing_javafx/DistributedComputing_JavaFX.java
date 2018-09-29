@@ -21,6 +21,7 @@ public class DistributedComputing_JavaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        System.out.println("This is a test");
         
         scene = new Scene(root);
         
