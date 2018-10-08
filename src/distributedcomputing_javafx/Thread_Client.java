@@ -61,6 +61,9 @@ public class Thread_Client extends Thread {
             fromServer = in.readLine(); //wait for response from router
             System.out.println("ServerRouter: " + fromServer);
             out.println(host); // Client sends the IP of its machine as initial send
+            
+            //give the client controller the means to send a message
+            ClientController.SetOutWriter(out);
 
             boolean waitingOnDestination = true;
             //while communicating with router
@@ -70,14 +73,16 @@ public class Thread_Client extends Thread {
                     {
                         //we successfully reached destination
                         ClientController.ShowCanvas();
+                        waitingOnDestination = false;
                     }
                 }
                 else {
                     if(fromServer.contains("Bye")) {
-
+                        
                     }
-
-                    ClientController.ReceiveStroke(fromServer);
+                    else {
+                        ClientController.ReceiveStroke(fromServer);
+                    }
                 }
             }
         }

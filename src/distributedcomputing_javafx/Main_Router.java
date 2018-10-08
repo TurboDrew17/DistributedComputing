@@ -62,8 +62,20 @@ public class Main_Router extends Application {
         }
     }
     
+    public static boolean IsInTable(String ip) {
+        for(int i = 0; i < routing_table.length; i++) {
+            if(routing_table[i][1] == ip) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     //keep track of any sockets making connections to router
     public static void AddToTable(Socket s) {
+        //if already in table, don't add
+        if(IsInTable(s.getInetAddress().getHostAddress()))
+            return;
         routing_table[table_index][0] = "Address " + table_index;
         routing_table[table_index][1] = s.getInetAddress().getHostAddress();
         routing_table[table_index][2] = s;
@@ -76,6 +88,9 @@ public class Main_Router extends Application {
     
     //keep track of any sockets making connections to router
     public static void AddToTable(AddressObject ao) {
+        //if already in table, don't add
+        if(IsInTable(ao.address))
+            return;
         routing_table[table_index][0] = ao.name;
         routing_table[table_index][1] = ao.address;
         routing_table[table_index][2] = ao.port;

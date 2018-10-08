@@ -5,6 +5,7 @@
  */
 package distributedcomputing_javafx;
 
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -31,6 +32,12 @@ import javafx.scene.shape.Circle;
 public class ClientController implements Initializable {
     
     static ClientController instance;
+    static PrintWriter outWriter = null;
+    
+    public static void SetOutWriter(PrintWriter out) {
+        outWriter = out;
+    }
+    
     
     //waiting to get response from router
     public static void ShowWaitingOnRouter() {
@@ -173,6 +180,8 @@ public class ClientController implements Initializable {
     @FXML private void handleCanvasReleased(MouseEvent event) {
         stroke_positions.add(new Position(event.getX(), event.getY()));
         System.out.println(GetStrokeString());
+        if(ClientController.outWriter != null)
+            outWriter.println(GetStrokeString());
         gc.setFill(brush_color.getValue());
         gc.fillOval(event.getX() - width_half, event.getY() - width_half, width, width);
     }
