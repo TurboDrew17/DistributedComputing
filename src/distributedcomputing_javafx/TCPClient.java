@@ -14,8 +14,8 @@ public class TCPClient {
    	InetAddress addr = InetAddress.getLocalHost();
    	String host = addr.getHostAddress(); // Client machine's IP
    	//String routerName = "j263-08.cse1.spsu.edu"; // ServerRouter host name
-        String routerName = "10.54.64.229";
-   	int SockNum = 5010; // port number
+        String routerName = "192.168.0.20";
+   	int SockNum = 7000; // port number
    	
    	// Tries to connect to the ServerRouter
       try {
